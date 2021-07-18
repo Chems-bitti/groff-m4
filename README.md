@@ -13,6 +13,7 @@ and with that the setup is done. To test it:
 1. Copy example from documentation or write your own in a `.m4` file
 2. Run chroff <name_of_file_without extension>
 3. check the PDF
+For a quicker example, run `chroff out` after cloning this repository.
 voilà.
 
 ## Caveats
