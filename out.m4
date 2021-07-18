@@ -35,6 +35,7 @@ arrow <- down 0.3 from R1.end chop 0.05; "\t R1.end" below
 arrow <- down last [].c.y-last arrow.end.y from R1.c; "\t R1.centre" below
 dimension_(from R1.start to R1.end,0.45,\t elen\_,0.4)
 dimension_(right_ dimen_ from R1.c-(dimen_/2,0),0.3,\t dimen\_,0.5)
+reset linewid
 .PE
 .PS
 log_init
@@ -46,3 +47,46 @@ line from R.Out left L_unit*3 then up S.In2.y-R.Out.y then to S.In2
 line left 4*L_unit from S.In1 ; "$S$sp_" rjust
 line right 4*L_unit from R.In1 ; "sp_$R$" ljust
 .PE
+.PP
+Now this is epic
+.BP
+.PP
+test
+
+.PS
+log_init
+S : AND_gate(4,3)
+line left from S.In1
+line left from S.In2
+line left from S.In3
+line left from S.In4
+line right L_unit*5 from S.Out then down then left L_unit*20 then up L_unit*2-0.01 
+
+.PE
+
+.PS
+log_init
+Autologix(Xor(~x3,And(Or(x1, x2),Or( x1,x2))), N);
+.PE
+
+.PS
+log_init
+FlipFlop(JK,,)
+.PE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
