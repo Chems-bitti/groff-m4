@@ -55,9 +55,9 @@ define(`lg_plen',4)            `Logic pin'
 define(`lg_pinsep',`(3*L_unit)')  `logic pin separation in logic units'
 define(`lg_chipwd',`(18*L_unit)') `default chip width'
 define(`lg_pintxt',
- `"ifxfig(`$1',`ifsvg(`svg_small(`$1',75)',`sp_{\scriptsize `$1'}sp_')')"')
+ `"ifxfig(`$1',`ifsvg(`svg_small(`$1',75)',`sp_`$1'sp_')')"')
                                `Logic pin text with bar where possible'
-define(`lg_bartxt',`iflatex(`$\overline{\hbox{`$1'}}$',
+define(`lg_bartxt',`iflatex(`$`$1'$',
  `ifsvg(`svg_ol(`$1')',`$1')')')
                                `The comma has to be at the top level'
 define(`m4_pattocomma',`patsubst(`$1',`$2',`,')')
@@ -104,7 +104,7 @@ define(`m4v',`ifelse(`$4',,AND_wd,`$4')')dnl
     then to svec_(m4h,-m4v/2) then to svec_(0,-m4v/2) then to (0,0) ] \
     with .Outline.start at (0,0)
   ifelse(`$5',,,`{ move to Box.n+(0,-5pt__)
-    m4lstring($5,"ifsvg(`svg_small($5,75)',`{\scriptsize$ $5 $}')") }')
+    m4lstring($5,"ifsvg(`svg_small($5,75)',`$ $5 $')") }')
   IOdefs(from svec_(0,m4v/2) to svec_(0,-m4v/2),In,`$1',R)
   Out: svec_(m4h,0) ifelse(`$2',N,`+svec_(N_diam,0)
     N_Out: NOT_circle \
@@ -553,7 +553,7 @@ define(`Mux',`[
   NE: svec_(m4Mwid,m4Mht/2-2)
   SE: svec_(m4Mwid,-m4Mht/2+2)
   line from W to NW then to NE then to SE then to SW then to W
-  ifelse(`$2',,,`"ifsvg(`svg_small($2,75)',`\scriptsize $2')" at C')
+  ifelse(`$2',,,`"ifsvg(`svg_small($2,75)',`$2')" at C')
   lg_pin(E,,Out,e)
   define(`m4Mdna',`$3')define(`m4MOE')dnl
   sc_draw(`m4Mdna',L,`define(`m4ML',-)',`define(`m4ML')')dnl
@@ -612,7 +612,7 @@ define(`Demux',`[
   NE: svec_(m4Dwid,m4Dht/2)
   SE: svec_(m4Dwid,-m4Dht/2)
   line from W to NW then to NE then to SE then to SW then to W
-  ifelse(`$2',,,`"ifsvg(`svg_small($2,75)',`\scriptsize $2')" at C')
+  ifelse(`$2',,,`"ifsvg(`svg_small($2,75)',`$2')" at C')
 #  lg pin(location, label, Picname, n|e|s|w [L|M|I|O][N][E], pinno, optlen)
   lg_pin(W,,In,w)
   define(`m4Ddna',`$3')define(`m4DOE')dnl
@@ -982,17 +982,17 @@ ifdef(`m4LI',
                              `FlipFlop( D|T|RS|JK, label, boxspec, pinlength )'
 define(`FlipFlop',`ifelse(
 `$1',D, `FlipFlopX(`$3',`$2',
-  : D:PinD;E:CK:PinCK, , :Q:PinQ;:lg_bartxt(Q):PinNQ,,`$4',`$5')',
+  : $D$:PinD;E:$CK$:PinCK, , :$Q$:PinQ;:$Q bar$:PinNQ,,`$4',`$5')',
 `$1',T, `FlipFlopX(`$3',`$2',
-  : T:PinT;E:CK:PinCK, , :Q:PinQ;:lg_bartxt(Q):PinNQ,,`$4',`$5')',
+  : $T$:PinT;E:$CK$:PinCK, , :$Q$:PinQ;:$Q bar$:PinNQ,,`$4',`$5')',
 `$1',RS, `FlipFlopX(`$3',`$2',
-  : R:PinR;: S:PinS,    , :Q:PinQ;:lg_bartxt(Q):PinNQ,,`$4',`$5')',
+  : $R$:PinR;: $S$:PinS,    , :$Q$:PinQ;:$Q bar$:PinNQ,,`$4',`$5')',
 `$1',SR, `FlipFlopX(`$3',`$2',
-  : S:PinS;: R:PinR,    , :Q:PinQ;:lg_bartxt(Q):PinNQ,,`$4',`$5')',
+  : $S$:PinS;: $R$:PinR,    , :$Q$:PinQ;:$Q bar$:PinNQ,,`$4',`$5')',
 `$1',JK, `FlipFlopX(`$3',`$2',
-   : J:PinJ;NE:CK:PinCK;: K:PinK, N:CLR:PinCLR,
-   :Q:PinQ;:lg_bartxt(Q):PinNQ, N:PR:PinPR,`$4',`$5')',
-`FlipFlopX(`$3',`$2', ::Pin;, , :Q:PinQ;:lg_bartxt(Q):PinNQ,,`$4',`$5')')')
+   : $J$:PinJ;NE:CK:PinCK;: $K$:PinK, N:$CLR$:PinCLR,
+   :$Q$:PinQ;:$Q bar$:PinNQ, N:$PR$:PinPR,`$4',`$5')',
+`FlipFlopX(`$3',`$2', ::Pin;, , :$Q$:PinQ;:$Q bar$:PinNQ,,`$4',`$5')')')
 
                              `FlipFlopX( boxspec, center label,
                                 leftpins, toppins, rightpins, bottompins,
@@ -1021,7 +1021,7 @@ define(`FlipFlop',`ifelse(
 define(`FlipFlopX',`[
  Chip: box wid_ FF_wid*L_unit ht_ FF_ht*L_unit `$1'
 dnl                           Center label
- ifelse(`$2',,,"ifsvg(`svg_small($2,75)',`\scriptsize $2')" at Chip.c)
+ ifelse(`$2',,,"ifsvg(`svg_small($2,75)',`$2')" at Chip.c)
  ifelse(`$7',,,`pushdef(`lg_plen',(`$7')/L_unit)')dnl
  ifelse(`$3',,,
   `m4_ffside(`(m4x-0.5)/m4_pc between Chip.nw_ and Chip.sw_',`$3',W,w)')
