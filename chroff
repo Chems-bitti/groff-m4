@@ -1,0 +1,2 @@
+m4 -I$PWD gpic.m4 $1.m4 > $1.ms
+groff -ms -e -p -G -KUTF-8 -Tdvi $1.ms | dvipdfm > $1.pdf
