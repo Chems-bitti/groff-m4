@@ -10,8 +10,8 @@ The documentation can be found on https://citeseerx.ist.psu.edu/viewdoc/download
 3. Change the `-I` argument inside chroff to the directory containing libcct.m4 and libgen.m4
 4. Change gpic.m4 argument in chroff accordingly
 and with that the setup is done. To test it:
-1. Copy example from documentation or write your own
-2. Run chroff <name_of_file>
+1. Copy example from documentation or write your own in a `.m4` file
+2. Run chroff <name_of_file_without extension>
 3. check the PDF
 voilà.
 
