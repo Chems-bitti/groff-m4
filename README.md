@@ -1,6 +1,6 @@
 
 # M4 Macros for Electric Circuit Diagrams in TROFF
-These are modified m4 configuration files for electric circuit diagrams with groff macros.
+These are modified m4 configuration files for electric circuit diagrams with groff macros. The original files meant for Latex can be found on https://www.ctan.org/tex-archive/graphics/circuit_macros
 
 ## M4 macro documentation
 The documentation can be found on https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.604.2295&rep=rep1&type=pdf. While this was intended for Latex, it works alright with groff, you only have to watch out for text formatting differences in labels.
