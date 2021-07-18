@@ -11,8 +11,9 @@ The documentation can be found on https://citeseerx.ist.psu.edu/viewdoc/download
 4. Change gpic.m4 argument in chroff accordingly
 and with that the setup is done. To test it:
 1. Copy example from documentation or write your own in a `.m4` file
-2. Run chroff <name_of_file_without extension>
-3. check the PDF
+2. make sure to include eqn $$ delimiters in that .m4 file (check my out.m4)
+3. Run chroff <name_of_file_without extension>
+4. check the PDF
 
 For a quicker example, run `chroff out` after cloning this repository.
 voilà.
