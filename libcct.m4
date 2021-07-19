@@ -1609,10 +1609,10 @@ define(`dna_',`$5')dnl
  In1: vec_(0,m4v/4)
  In2: vec_(0,-m4v/4)
    { move to In`'ifinstr(dna_,R,2,1)
-     ifelse(`$2',,"ifsvg(-,`{\scriptsize$-$}')" \
+     ifelse(`$2',,"ifsvg(-,`$-$')" \
        at rvec_(4pt__,0) ifsvg(+(0,textht/10)),m4lstring(`$2',"`$2'"))}
    { move to In`'ifinstr(dna_,R,1,2)
-     ifelse(`$3',,"ifsvg(+,`{\scriptsize$+$}')" \
+     ifelse(`$3',,"ifsvg(+,`$+$')" \
        at rvec_(4pt__,0) ifsvg(+(0,textht/10)),m4lstring(`$3',"`$3'"))}
  sc_draw(`dna_',P,
    `{line from E1 to (vec_(m4h/2,m4v/4+m4v/8));    V1: Here}
