@@ -1,92 +1,74 @@
 .EQ
 delim $$
 .EN
-.PP
-test
 
-.PS 
-cct_init 
-elen = 0.75 
-Origin: Here 
-source(up_ elen); llabel(-,v sub s,+)
-resistor(right_ elen); rlabel(,R,)
-dot
-{ 
-capacitor(down_ to (Here,Origin)) 
-rlabel(+,v,-); llabel(,C,)
-dot
-} 
-line right_ elen*2/3
-inductor(down_ Here.y-Origin.y); rlabel(,L,); b_current(i)
-line to Origin
-ground
-.PE
+.PP
+Test File
 .PS
 cct_init
-linewid = 2.0
-linethick_(2.0)
-R1: resistor
-thinlines_
-box dotted wid last [].wid ht last [].ht at last []
-move to 0.85 between last [].sw and last [].se
-spline <- down arrowht*2 right arrowht/2 then right 0.15; "\t last []" ljust
-arrow <- down 0.3 from R1.start chop 0.05; "\t R1.start" below
-arrow <- down 0.3 from R1.end chop 0.05; "\t R1.end" below
-arrow <- down last [].c.y-last arrow.end.y from R1.c; "\t R1.centre" below
-dimension_(from R1.start to R1.end,0.45,\t elen\_,0.4)
-dimension_(right_ dimen_ from R1.c-(dimen_/2,0),0.3,\t dimen\_,0.5)
-reset linewid
+Origin : Here
+S : opamp
+line left from S.In1 
+line up
+dot
+{                         # opening curly braces save your position
+	line right
+	resistor; rlabel(,R sub F,)
+	b_current(i sub 2)
+	line down Here.y then to S.Out
+	line right;
+	dot; up_; rlabel(,v sub out,)        # up_ here is used for alligning text vertically
+}                        # closing curly braces returns you to your saved position
+line left 0.1
+resistor(left_); llabel(,R sub G,)
+b_current(i,,,E, 0.2)    # Try doing this after declaring a line to understand arrows (check the documentation too)
+rarrow(v)
+line left 0.2
+
+dot; up_; llabel(,v sub in,) 
+line left 0.2 from S.In2 then down 0.2
+ground
 .PE
+
 .PS
-log_init
-S: NOR_gate
+cct_init
+Origin : Here
+S : opamp
+line left 0.1 from S.In1 
+{
+line up
+
+	{
+		line up 0.4 
+		capacitor; llabel(,C,)
+		line down 0.4 
+	}
+	resistor; llabel(,R sub F,)
+	line down Here.y then to S.Out
+}
 left_
-R: NOR_gate at S+(0,-L_unit*(AND_ht+1))
-line from S.Out right L_unit*3 then down S.Out.y-R.In2.y then to R.In2
-line from R.Out left L_unit*3 then up S.In2.y-R.Out.y then to S.In2
-line left 4*L_unit from S.In1 ; "$S$sp_" rjust
-line right 4*L_unit from R.In1 ; "sp_$R$" ljust
+resistor(left_); rlabel(,R sub G,) # You can allign components by giving them *direction*_ argument
+.PE 
+.PS
+cct_init
+source(down_); rlabel(-,v,+)
 .PE
-.PP
-Now this is epic
-.BP
-.PP
-test
 
 .PS
-log_init
-S : AND_gate(4,3)
-line left from S.In1
+cct_init
+Origin : Here
+S : opamp
+line left 0.1 from S.In1
+{
+	resistor(left_)
+	ground
+}
+line up 0.2 
+R : resistor(right_) 
+line right 0.2 then down R.y
 line left from S.In2
-line left from S.In3
-line left from S.In4
-line right L_unit*5 from S.Out then down then left L_unit*20 then up L_unit*2-0.01 
-
+dot; rlabel(,V sub in,)
+move right 2           # try writing `move right 2 then to (Here.x, 0)` to understand when does pic save the Here variable
+move to (Here.x, 0)
+S2 : opamp 
 .PE
-
-.PS
-log_init
-Autologix(Xor(~x3,And(Or(x1, x2),Or( x1,x2))), N);
-.PE
-
-.PS
-log_init
-FlipFlop(JK,,)
-.PE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
