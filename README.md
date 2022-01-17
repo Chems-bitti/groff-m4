@@ -8,6 +8,7 @@ This repo also includes a modified ms macro package `s.tmac` that adds a few thi
 - Table titles and auto counter `.Ts and .Te "title"`
 - Betters Lists `.Ls, .Li, and .Le`
 - Code blocks in courier `.Ps and .Pe`
+
 These things are heavily inspired (some modified, some not) from the extended macro package by Steve Talbott. Found this O'Reilly book :
 https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter17.html
 The book is great, would recommend for people who want to get into text processing and roff in general.
