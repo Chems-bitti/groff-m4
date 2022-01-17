@@ -34,6 +34,8 @@ voilà.
 s.tmac :
 - Make a table index that is generated after the table of contents
 - Make a figure index that is generated after the table index
+
+.m4 :
 - Keep using this until I find something that doesn't work well and fix it
 - maybe make better macros ?
 
