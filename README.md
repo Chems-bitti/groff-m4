@@ -5,7 +5,7 @@ This repo also includes a modified ms macro package `s.tmac` that adds a few thi
 - A modified .NH macro for table of contents generation
 - An automatic table of contents generator `.tc`
 - Figure titles and auto counter `.Fs and .Fe "title"`
-- Table titles and auto counter `.Ts and .Te "title"`
+- Table titles and auto counter, modified `.TS and .TE "title"`
 - Betters Lists `.Ls, .Li, and .Le`
 - Code blocks in courier `.Ps and .Pe`
 
