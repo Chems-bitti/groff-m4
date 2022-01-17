@@ -34,6 +34,7 @@ voilà.
 s.tmac :
 - Make a table index that is generated after the table of contents
 - Make a figure index that is generated after the table index
+- Have it so that I can choose which page to print which thing (toc on second page for example)
 
 .m4 :
 - Keep using this until I find something that doesn't work well and fix it
