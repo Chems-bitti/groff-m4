@@ -6,7 +6,7 @@ delim $$
 TD N°1 
  L'AOP en mono-alimentation
 .AU
-Chems Eddine NAIMI
+
 .AI
 Sorbonne Université - Sciences et Ingénierie
  3e année de licence Électronique, Énergie Électrique, et Automatique
@@ -237,3 +237,5 @@ Et on sait que :
 V sub out = {( R sub 2 + R sub 1 )// R sub L } over {( R sub 2 + R sub 1 )// R sub L + Rs} V sub s 
 .EN
 Il suffit ensuite de remplacer $V sub s$ par son expression et faire l'application numérique
+.tc
+
