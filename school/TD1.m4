@@ -32,7 +32,7 @@ resistor(left_); rlabel(,R sub 1,);
 llabel(,1k Omega,)
 line down 0.2; source(down_); rlabel(+,V sub in, -); dot(,,1); llabel(,V sub ref2,) 
 .PE
-.Fe ""
+.Fe "Test"
 .IP 1)
 Etablir l'expression de $V sub out$ en fonction de $A$, $V sub in$, $V sub ref1$, $V sub ref2$ et des éléments du montage :
 .LP
@@ -90,7 +90,7 @@ left_;capacitor; llabel(,C); dot;up_; llabel(,V sub in)
 line left from S.In1; left_;b_current(i sub 2,below_,,E);
 resistor(left_); rlabel(,R sub 1,); dot(,,1); up_;llabel(, V sub ref);
 .PE
-.Fe ""
+.Fe "test2"
 .IP 1) 
 Analyse en courant continue :
 .LP
@@ -115,7 +115,7 @@ line left 0.2 from S.In2
 line left from S.In1; left_;b_current(i sub 2,below_,,E);
 resistor(left_); rlabel(,R sub 1,); dot(,,1); up_;llabel(, V sub ref);
 .PE
-.Fe ""
+.Fe "test3"
 On pourra déterminer l'expression de $V sub out$ de la même manière qu'à
 l'exercice 1, on retrouve :
 .EQ
@@ -157,7 +157,7 @@ left_;capacitor; llabel(,C); dot;up_; llabel(,V sub in)
 line left from S.In1; left_;b_current(i sub 2,below_,,E);
 resistor(left_); rlabel(,R sub 1,); ground;
 .PE
-.Fe ""
+.Fe "test4"
 .LP
 De la même façon qu'à la question précédente :
 .EQ
@@ -217,7 +217,7 @@ line left from S.In1; b_current(i sub 2,,,E);
 resistor(left_); rlabel(,R sub 1,);
 llabel(,1k Omega,); ground;
 .PE
-.Fe ""
+.Fe "test5"
 On commence par calculer $V sup +$ et $V sup -$ :
 .EQ
 left { matrix {
@@ -237,5 +237,6 @@ Et on sait que :
 V sub out = {( R sub 2 + R sub 1 )// R sub L } over {( R sub 2 + R sub 1 )// R sub L + Rs} V sub s 
 .EN
 Il suffit ensuite de remplacer $V sub s$ par son expression et faire l'application numérique
-.tc
 
+
+.tc 

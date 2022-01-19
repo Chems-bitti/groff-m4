@@ -2015,8 +2015,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .tC "\\*(fG" "\\$1" "Figure"
 .bd I
 .sp
-.if \\n(kF=1 .KE \" End keep if in effect
-.tC "\\*(fG" "\\$1" "Figure" \" Output TOC info
 ..
 
 .de Ts 
@@ -2150,6 +2148,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \\*(SN2 \" Output SN string
 ..
 .de tc
+.pg@begin 1 i 
 .br
 \&\c
 'bp
@@ -2160,6 +2159,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .nf
 .hL
 .rm hL
+.br
+\&\c
+'bp
+.ta \\n(LLu-5n \\n(LLuR
+.ce 
+\f3FIGURES\fR
+.sp 2
+.nf
+.fL
+.rm fL
 ..
 .de tC
 .if "\\$3"Heading" \{\
@@ -2171,6 +2180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .da
 .\}
 .if "\\$3"Figure" \{\
+.br
 .da fL
 \\$3\.\\$1	\\$2\\a\\t\\n[PN]
 .br
@@ -2198,3 +2208,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\" fill-column: 72
 .\" End:
 .\" vim: set filetype=groff textwidth=72:
+
+
