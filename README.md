@@ -1,11 +1,12 @@
 
 # M4 Macros for Electrical Circuit Diagrams in GROFF
 These are modified m4 configuration files for electric circuit diagrams with groff macros. The original files meant for Latex can be found on https://www.ctan.org/tex-archive/graphics/circuit_macros.
-This repo also includes a modified ms macro package `s.tmac` that adds a few things I like:
+This repo also includes a modified ms macro package `s.tmac` that adds a few things I like (Be sure to check s.tmac and the .m4 file in school/ for explanatory comments):
 - A modified .NH macro for table of contents generation
-- An automatic table of contents generator `.tc`
+- An automatic table of contents generator `.tc`: Unfortunately, starting today, table of content generation will require two or three parses of the file, the reason being that I output it to a text file that is then formatted on the page where you put the .tc commande. Check school/TD1.m4 for explanatory comments
 - Figure titles and auto counter `.Fs and .Fe "title"`
 - Table titles and auto counter, modified `.TS and .TE "title"`
+- Figure and table index `.FT f` or `.FT t`, see schoo/TD1.m4 for comments
 - Betters Lists `.Ls, .Li, and .Le`
 - Code blocks in courier `.Ps and .Pe`
 
@@ -32,9 +33,11 @@ For a quicker example, `chmod +x chroff` and run `chroff out` after cloning this
 voilà.
 # To do list
 s.tmac :
-- Make a table index that is generated after the table of contents
-- Make a figure index that is generated after the table index
-- Have it so that I can choose which page to print which thing (toc on second page for example)
+- ~~Make a figure index that is generated after the table index~~
+- ~~Have it so that I can choose which page to print which thing (toc on second page for example)~~
+- *Good* pdf links
+- make .tc macro more extensible
+- make .FT macro more extensible
 
 .m4 :
 - Keep using this until I find something that doesn't work well and fix it
