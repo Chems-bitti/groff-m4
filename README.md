@@ -6,7 +6,7 @@ This repo also includes a modified ms macro package `s.tmac` that adds a few thi
 - An automatic table of contents generator `.tc`: Unfortunately, starting today, table of content generation will require two or three parses of the file, the reason being that I output it to a text file that is then formatted on the page where you put the .tc commande. Check school/TD1.m4 for explanatory comments
 - Figure titles and auto counter `.Fs and .Fe "title"`
 - Table titles and auto counter, modified `.TS and .TE "title"`
-- Figure and table index `.FT f` or `.FT t`, see schoo/TD1.m4 for comments
+- Figure and table index `.FT f` or `.FT t`, see school/TD1.m4 for comments
 - Betters Lists `.Ls, .Li, and .Le`
 - Code blocks in courier `.Ps and .Pe`
 
