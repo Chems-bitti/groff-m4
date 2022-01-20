@@ -10,7 +10,13 @@ TD N°1
 .AI
 Sorbonne Université - Sciences et Ingénierie
  3e année de licence Électronique, Énergie Électrique, et Automatique
-.bp
+.PP
+.tc
+.\" Table of contents now can be generated on any page you want but there's a caveat
+.\" You need to process your document 3 times (unfortunately I can't find a way to do it once
+.\" With or without putting a .tc macro in this file, a text file named "toc" is generated
+.\" For now, modifying the file directly won't have an effect on the table of contents printed on the PDF
+.\" Next step for me is to make it modifiable so as to have easily customizable toc
 .NH 1 "Exercice n°1 : Amplificateur inverseur"
 .PP
 On considère le montage amplificateur inverseur suivant, l'AOP étant parfait et
@@ -238,5 +244,7 @@ V sub out = {( R sub 2 + R sub 1 )// R sub L } over {( R sub 2 + R sub 1 )// R s
 .EN
 Il suffit ensuite de remplacer $V sub s$ par son expression et faire l'application numérique
 
-
-.tc 
+.\" The F igures and T ables macro takes one argument (for now)
+.\" f for printing a figure index, t for printing a tables index
+.\" will see what to do with it later
+.FT f

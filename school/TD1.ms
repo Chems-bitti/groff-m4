@@ -10,7 +10,8 @@ TD N°1
 .AI
 Sorbonne Université - Sciences et Ingénierie
  3e année de licence Électronique, Énergie Électrique, et Automatique
-.bp
+.PP
+.tc
 .NH 1 "Exercice n°1 : Amplificateur inverseur"
 .PP
 On considère le montage amplificateur inverseur suivant, l'AOP étant parfait et
@@ -1077,5 +1078,5 @@ V sub out = {( R sub 2 + R sub 1 )// R sub L } over {( R sub 2 + R sub 1 )// R s
 .EN
 Il suffit ensuite de remplacer $V sub s$ par son expression et faire l'application numérique
 
-
-.tc 
+.\" The F igures and T ables macro takes j 
+.FT f

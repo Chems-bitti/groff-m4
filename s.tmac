@@ -192,7 +192,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	br
 .	di
 .\}
-.nr cov*n-au +1
+.r cov*n-au +1
 .di cov*au-div!\\n[cov*n-au]
 .nf
 .ft I
@@ -2025,7 +2025,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ..
 .de Te \" Table end; $1 = title
 
-.ce 2 \" Output label and
+.ce \" Output label and
 \f3Table \\*(tB. \&\\$1\f1 \" title on 2 lines
 
 .tC "\\*(tB" "\\$1" "Table" \" Output TOC info
@@ -2157,8 +2157,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \f3TABLE DE MATIERES\fR
 .sp 2
 .nf
-.hL
-.rm hL
+.so toc
+.pg@begin 3 0
+.bp
+.open file toc
+.close file
+..
+.de FT \"Figures and tables
+.pg@begin 1 i 
+.if "\\$1"f" \{\
 .br
 \&\c
 'bp
@@ -2169,15 +2176,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .nf
 .fL
 .rm fL
+.br
+.\}
+.if "\\$1"t" \{\
+\&\c
+'bp
+.ta \\n(LLu-5n \\n(LLuR
+.ce 
+\f3TABLES\fR
+.sp 2
+.nf
+.tL
+.rm tL
+.\}
 ..
 .de tC
 .if "\\$3"Heading" \{\
 .br
-.da hL
-.br
-\\$1	\\$2\\a\\t\\n[PN]
-.br
-.da
+.opena file toc
+.write file ".br
+.write file \\$1 \\$2\\a\\t\\n[PN]
+.close file
 .\}
 .if "\\$3"Figure" \{\
 .br
@@ -2208,5 +2227,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\" fill-column: 72
 .\" End:
 .\" vim: set filetype=groff textwidth=72:
-
 
