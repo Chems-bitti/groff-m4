@@ -46,4 +46,11 @@ s.tmac :
 ## Caveats
 This was made by an EE student and is a work in progress, so expect spaghetti shell script. I regularly use this for lab reports and will improve it whenever I discover problems.
 
+# FAQ
+> How do I source files for large documents/Books ?
+
+I tried using .so in a `.ms` file but it didn't seem to work so well, so use
+the `include(file)` macro in your main `.m4` file, here's the documentation
+https://www.gnu.org/software/m4/manual/html_node/Include.html#Include
+
 
