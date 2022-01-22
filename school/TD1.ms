@@ -1,18 +1,24 @@
-.\" TD1.pdf
+.\" TD.pdf
 .EQ
 delim $$
 .EN
 .TL 
-TD N°1 
- L'AOP en mono-alimentation
+TD 
+ 3EE200 : Électronique Analogique
 .AU
 
 .AI
 Sorbonne Université - Sciences et Ingénierie
  3e année de licence Électronique, Énergie Électrique, et Automatique
 .PP
-.tc
-.NH 1 "Exercice n°1 : Amplificateur inverseur"
+.\" Table of contents now can be generated on any page you want but there's a caveat
+.\" You need to process your document 3 times (unfortunately I can't find a way to do it once
+.\" With or without putting a .tc macro in this file, a text file named "toc" is generated
+.\" For now, modifying the file directly won't have an effect on the table of contents printed on the PDF
+.\" Next step for me is to make it modifiable so as to have easily customizable toc
+.tc toc2
+.Se 1 "TD N°1 :" "L'AOP En Mono-Alimentation" 
+.NH 1 "Exercice n° 1 : Amplificateur inverseur"
 .PP
 On considère le montage amplificateur inverseur suivant, l'AOP étant parfait et
 alimenté en $+10V/0V$ :
@@ -172,7 +178,7 @@ line down 0.2; line invis  down
   move to last [].c;   {"$~~$$ V sub ref2$$~~$" \
      at last [].e ljust };   
 .PE
-.Fe "Test"
+.Fe ""
 .IP 1)
 Etablir l'expression de $V sub out$ en fonction de $A$, $V sub in$, $V sub ref1$, $V sub ref2$ et des éléments du montage :
 .LP
@@ -209,7 +215,7 @@ ref1 	"En régime continue"
 }
 }
 .EN
-.NH 1 "Exercice n°2 : Inverseur et filtre
+.NH 1 "Exercice n° 2 : Inverseur et filtre
 .Fs
 .PS
 # cct_init Version 9.6: Gpic m4 macro settings.
@@ -402,7 +408,7 @@ line left from S.In1;  left;
   move to last [].c;  up;  {"$~~$$ V sub ref$$~~$" \
      at last [].w rjust };  ;
 .PE
-.Fe "test2"
+.Fe ""
 .IP 1) 
 Analyse en courant continue :
 .LP
@@ -575,8 +581,8 @@ line left from S.In1;  left;
   move to last [].c;  up;  {"$~~$$ V sub ref$$~~$" \
      at last [].w rjust };  ;
 .PE
-.Fe "test3"
-On pourra déterminer l'expression de $V sub out$ de la même manière qu'à
+.Fe ""
+On pourra déterminer l'expression d $V sub out$ de la même manière qu'à
 l'exercice 1, on retrouve :
 .EQ
 i sub 1 + i sub 2 = 0
@@ -805,7 +811,7 @@ line left from S.In1;  left;
     left ; rp_ang = m4sd_ang
   } ;
 .PE
-.Fe "test4"
+.Fe ""
 .LP
 De la même façon qu'à la question précédente :
 .EQ
@@ -833,7 +839,7 @@ La fonction de transfert du système sera alors :
 .EQ
 H( omega ) = V sub out over V sub in = {R sub 1 + R sub 2} over {R sub 1} {j omega RC} over {1 + j omega RC}
 .EN
-.NH 1 "Exercice n°3 : Amplificateur non inverseur"
+.NH 1 "Exercice n° 3 : Amplificateur non inverseur"
 .PP 
 On considère le montage de la figure suivante, l'AOP étant parfait, possédant un gain différentiel fini $A = 2 times 10 sup 5$ et alimenté en $+10V/-10V$
 .Fs
@@ -1012,7 +1018,7 @@ line up 0.7 then left RL.x-0.2
   move to last [].c;  {"$~~$$ n$$~~$" \
      at last [].e above ljust };   ;
 line left 0.2 from S.In2 then down 0.2; [  circle rad (0.04*linewid)  fill 1-((1) )   ] with .c at Here
-  move to last [].c;   {"$~~$$ V sub ref1$$~~$" \
+  move to last [].c;   {"$~~$$ V sub in$$~~$" \
      at last [].s below };  ;
 line left from S.In1;     
   { move to last line.start+((rp_len-    ((rp_len-last [].wid)/2*2/3+arrowht/3))*(cos(rp_ang)),(rp_len-    ((rp_len-last [].wid)/2*2/3+arrowht/3))*(sin(rp_ang)))
@@ -1057,7 +1063,7 @@ line left from S.In1;
     left ; rp_ang = m4sd_ang
   } ;
 .PE
-.Fe "test5"
+.Fe ""
 On commence par calculer $V sup +$ et $V sup -$ :
 .EQ
 left { matrix {
@@ -1070,7 +1076,7 @@ V sup - = V sub R sub 1 = {R sub 1 } over {R sub 1 + R sub 2} V sub out
 .EN
 On sait que :
 .EQ
-V sub s  = A ( V sup + - V sup - ) = A ( V sub in - {R sub 1 } over {R sub 1 + R sub 2}V sub out
+V sub s  = A ( V sup + - V sup - ) = A ( V sub in - {R sub 1 } over {R sub 1 + R sub 2}V sub out )
 .EN
 Et on sait que :
 .EQ
@@ -1078,5 +1084,186 @@ V sub out = {( R sub 2 + R sub 1 )// R sub L } over {( R sub 2 + R sub 1 )// R s
 .EN
 Il suffit ensuite de remplacer $V sub s$ par son expression et faire l'application numérique
 
-.\" The F igures and T ables macro takes j 
-.FT f
+
+
+.\" The F igures and T ables macro takes one argument (for now)
+.\" f for printing a figure index, t for printing a tables index
+.\" will see what to do with it later
+.Se 2 "TD N°2 :" "Comportement de l'AOP en fonction de la fréquence" 
+On considère que tous les AOP de ce TD sont alimentés en $12V/0V$
+.NH 1 "Exercice n° 1 : Conservation du produit Gain Bande"
+.PP
+On se propose de vérifier la conservation du produit gain-bande passante avec
+un AOP qui possède un gain
+différentiel statique $A sub 0 = 105$ et une fréquence de coupure $f sub 0 =
+10 roman " Hz"$. On pourra
+considérer que les courants
+d'entrée de l'AOP, $i sup +$ et $i sup -$ , sont négligeables, mais le gain différentiel
+étant fini on ne peut plus poser $V sup + = V sup -$
+.IP 1) 
+Le produit gain bande passante de l'AOP
+.EQ
+GB = A sub 0 f sub 0 = 10 sup 5 times 10 = 10 sup 6
+.EN
+.IP 2)
+On considère le montage amplificateur non inverseur suivant :
+.Fs
+.PS
+Origin : Here
+ right; S : [  line invis to Here+(max((1.5*linewid)-linewid/4,linewid),0)
+  rpoint__
+  
+   
+ W: Here
+ N: ((linewid/2)*((-sin(rp_ang))),(linewid/2)*(cos(rp_ang)))
+ S: ((-linewid/2)*((-sin(rp_ang))),(-linewid/2)*(cos(rp_ang)))
+ E: ((linewid)*(cos(rp_ang)),(linewid)*(sin(rp_ang)))
+ C: ((linewid/2)*(cos(rp_ang)),(linewid/2)*(sin(rp_ang)))
+ { line to N then to E then to S then to W; move to E
+   if rp_len > linewid then { line to Here+((rp_len-linewid)*(cos(rp_ang)),(rp_len-linewid)*(sin(rp_ang))) }
+ Out: Here }
+ NE: (((linewid/2)*(cos(rp_ang))+(linewid/4)*((-sin(rp_ang)))),((linewid/2)*(sin(rp_ang))+(linewid/4)*(cos(rp_ang)))); E1: NE
+ SE: (((linewid/2)*(cos(rp_ang))+(-linewid/4)*((-sin(rp_ang)))),((linewid/2)*(sin(rp_ang))+(-linewid/4)*(cos(rp_ang)))); E2: SE
+ In1: ((linewid/4)*((-sin(rp_ang))),(linewid/4)*(cos(rp_ang)))
+ In2: ((-linewid/4)*((-sin(rp_ang))),(-linewid/4)*(cos(rp_ang)))
+   { move to In1
+     "$-$" \
+       at Here+((4*(scale/72.27))*(cos(rp_ang)),(4*(scale/72.27))*(sin(rp_ang))) }
+   { move to In2
+     "$+$" \
+       at Here+((4*(scale/72.27))*(cos(rp_ang)),(4*(scale/72.27))*(sin(rp_ang))) }
+ 
+  ] 
+line right 0.1 from S.Out; [  circle rad (0.04*linewid)  fill 1-((1) )   ] with .c at Here
+  move to last [].c;  up;   {"$~~$$ V sub out$$~~$" \
+     at last [].r ljust };  
+line up from S.Out;line left 0.2;    line invis  left
+  rpoint__
+  
+   
+          if linewid/6/4*6*2 > rp_len then { line invis to Here+((linewid/6/4*6*2)*(cos(rp_ang)),(linewid/6/4*6*2)*(sin(rp_ang)))
+  rpoint__
+  
+    }
+    M4_xyO: last line.c
+    { line from last line.start to M4_xyO+(((linewid/6/4)*(-6))*(cos(rp_ang)),((linewid/6/4)*(-6))*(sin(rp_ang)))\
+       then to M4_xyO+((((linewid/6/4)*(-5))*(cos(rp_ang))+((linewid/6/4)*((2)))*((-sin(rp_ang)))),(((linewid/6/4)*(-5))*(sin(rp_ang))+((linewid/6/4)*((2)))*(cos(rp_ang)))) \
+         then to M4_xyO+((((linewid/6/4)*(-3))*(cos(rp_ang))+((linewid/6/4)*((-2)))*((-sin(rp_ang)))),(((linewid/6/4)*(-3))*(sin(rp_ang))+((linewid/6/4)*((-2)))*(cos(rp_ang)))) \
+   then to M4_xyO+(((-(linewid/6/4))*(cos(rp_ang))+((linewid/6/4)*((2)))*((-sin(rp_ang)))),((-(linewid/6/4))*(sin(rp_ang))+((linewid/6/4)*((2)))*(cos(rp_ang)))) \
+         then to M4_xyO+(((linewid/6/4)*(cos(rp_ang))+((linewid/6/4)*((-2)))*((-sin(rp_ang)))),((linewid/6/4)*(sin(rp_ang))+((linewid/6/4)*((-2)))*(cos(rp_ang)))) \
+   then to M4_xyO+((((linewid/6/4)*(3))*(cos(rp_ang))+((linewid/6/4)*((2)))*((-sin(rp_ang)))),(((linewid/6/4)*(3))*(sin(rp_ang))+((linewid/6/4)*((2)))*(cos(rp_ang)))) \
+         then to M4_xyO+((((linewid/6/4)*(5))*(cos(rp_ang))+((linewid/6/4)*((-2)))*((-sin(rp_ang)))),(((linewid/6/4)*(5))*(sin(rp_ang))+((linewid/6/4)*((-2)))*(cos(rp_ang)))) \
+           then to M4_xyO+(((linewid/6/4)*(6))*(cos(rp_ang)),((linewid/6/4)*(6))*(sin(rp_ang))) \
+         then to last line.end
+      [box invis ht linewid/6/4*2*2 wid linewid/6/4*6*2] at 2nd last line.c
+      }
+  
+  
+  
+#
+  line invis from 2nd last line.start to 2nd last line.end ;   {"$~~$$ R sub 2$$~~$" \
+     at last [].t above };  ;
+line left 0.2 then down Here.y-S.In1.y; [  circle rad (0.04*linewid)  fill 1-(0 )   ] with .c at Here
+  move to last [].c;
+{
+	line to S.In1;
+}
+   line invis  left
+  rpoint__
+  
+   
+          if linewid/6/4*6*2 > rp_len then { line invis to Here+((linewid/6/4*6*2)*(cos(rp_ang)),(linewid/6/4*6*2)*(sin(rp_ang)))
+  rpoint__
+  
+    }
+    M4_xyO: last line.c
+    { line from last line.start to M4_xyO+(((linewid/6/4)*(-6))*(cos(rp_ang)),((linewid/6/4)*(-6))*(sin(rp_ang)))\
+       then to M4_xyO+((((linewid/6/4)*(-5))*(cos(rp_ang))+((linewid/6/4)*((2)))*((-sin(rp_ang)))),(((linewid/6/4)*(-5))*(sin(rp_ang))+((linewid/6/4)*((2)))*(cos(rp_ang)))) \
+         then to M4_xyO+((((linewid/6/4)*(-3))*(cos(rp_ang))+((linewid/6/4)*((-2)))*((-sin(rp_ang)))),(((linewid/6/4)*(-3))*(sin(rp_ang))+((linewid/6/4)*((-2)))*(cos(rp_ang)))) \
+   then to M4_xyO+(((-(linewid/6/4))*(cos(rp_ang))+((linewid/6/4)*((2)))*((-sin(rp_ang)))),((-(linewid/6/4))*(sin(rp_ang))+((linewid/6/4)*((2)))*(cos(rp_ang)))) \
+         then to M4_xyO+(((linewid/6/4)*(cos(rp_ang))+((linewid/6/4)*((-2)))*((-sin(rp_ang)))),((linewid/6/4)*(sin(rp_ang))+((linewid/6/4)*((-2)))*(cos(rp_ang)))) \
+   then to M4_xyO+((((linewid/6/4)*(3))*(cos(rp_ang))+((linewid/6/4)*((2)))*((-sin(rp_ang)))),(((linewid/6/4)*(3))*(sin(rp_ang))+((linewid/6/4)*((2)))*(cos(rp_ang)))) \
+         then to M4_xyO+((((linewid/6/4)*(5))*(cos(rp_ang))+((linewid/6/4)*((-2)))*((-sin(rp_ang)))),(((linewid/6/4)*(5))*(sin(rp_ang))+((linewid/6/4)*((-2)))*(cos(rp_ang)))) \
+           then to M4_xyO+(((linewid/6/4)*(6))*(cos(rp_ang)),((linewid/6/4)*(6))*(sin(rp_ang))) \
+         then to last line.end
+      [box invis ht linewid/6/4*2*2 wid linewid/6/4*6*2] at 2nd last line.c
+      }
+  
+  
+  
+#
+  line invis from 2nd last line.start to 2nd last line.end ;  {"$~~$$ R sub 1$$~~$" \
+     at last [].t above };  ;   {"$~~$$ 1 K Omega$$~~$" \
+     at last [].s below };  ; box invis ht 0 wid 0 with .c at Here
+    {  m4sd_ang = rp_ang; rp_ang = (-90)*(dtor_)  ; 
+  line from last box.c to Here+((linewid/4)*(cos(rp_ang)),(linewid/4)*(sin(rp_ang)))
+  {line from Here+((linewid/6)*((-sin(rp_ang))),(linewid/6)*(cos(rp_ang))) \
+          to Here+((-linewid/6)*((-sin(rp_ang))),(-linewid/6)*(cos(rp_ang)))}
+   {line from Here+(((linewid/16)*(cos(rp_ang))+(linewid/9)*((-sin(rp_ang)))),((linewid/16)*(sin(rp_ang))+(linewid/9)*(cos(rp_ang)))) \
+          to Here+(((linewid/16)*(cos(rp_ang))+(-linewid/9)*((-sin(rp_ang)))),((linewid/16)*(sin(rp_ang))+(-linewid/9)*(cos(rp_ang))))}
+   line from Here+(((2*linewid/16)*(cos(rp_ang))+(linewid/14)*((-sin(rp_ang)))),((2*linewid/16)*(sin(rp_ang))+(linewid/14)*(cos(rp_ang)))) \
+          to Here+(((2*linewid/16)*(cos(rp_ang))+(-linewid/14)*((-sin(rp_ang)))),((2*linewid/16)*(sin(rp_ang))+(-linewid/14)*(cos(rp_ang))))
+    left ; rp_ang = m4sd_ang
+  } ;
+line left 0.1 from S.In2; [  circle rad (0.04*linewid)  fill 1-((1) )   ] with .c at Here
+  move to last [].c;  up;   {"$~~$$ V sub in$$~~$" \
+     at last [].w rjust };  ;
+.PE
+.Fe ""
+.LP
+On calcule $V sub out over V sub in$
+.EQ
+V sub out mark = A ( V sup + - V sup - )
+.EN
+.EQ
+lineup = A ( V sub in - {R sub 1} over {R sub 1 + R sub 2} V sub out )
+.EN
+Alors :
+.EQ
+V sub out ( 1 + A {R sub 1 } over {R sub 1 + R sub 2} )= A V sub in
+.EN
+.EQ
+V sub out over V sub in = {A } over {1 + A {R sub 1} over {R sub 1 + R sub 2}}
+.EN
+Or $ A = {A sub 0} over {1 + j f over f sub 0}$, alors :
+.EQ
+V sub out over V sub in mark = { {A sub 0} over {1 + j f over f sub 0}} over {1 + {A sub 0 } over {1 + j f over f sub 0} {R sub 1} over {R sub 1 + R sub 2}}
+.EN
+.EQ
+lineup = {A sub 0} over {1 + {A sub 0 R sub 1 } over {R sub 1 + R sub 2} + j f over f sub 0}
+.EN
+.EQ
+lineup = {A sub 0} over {1 + {A sub 0 R sub 1} over {R sub 1 + R sub 2}} times {1} over {1 + j f over f sub 0 {R sub 1 + R sub 2} over {R sub 1 + R sub 2 + A sub 0 R sub 1}}
+.EN
+Sous la forme $ {K} over {1 + j f over f sub c}$ avec :
+.EQ
+left { matrix {
+lcol {
+K = {A sub 0} over {1 + {A sub 0 R sub 1} over {R sub 1 + R sub 2}} 
+above
+f sub c = f sub 0 (1 + {A sub 0 R sub 1} over {R sub 1 + R sub 2} )
+}
+}
+.EN
+Comparons maintenant le produit Gain Bande de ce montage au produit Gain Bande de l'AOP :
+.EQ
+K times f sub c = {A sub 0} over {1 + {A sub 0 R sub 1} over {R sub 1 + R sub 2}} f sub 0
+( 1 + {A sub 0 R sub 1 } over {R sub 1 + R sub 2} ) = A sub 0 f sub 0
+.EN
+C'est égal peu importe la valeur de $R sub 1$ et $R sub 2$.
+.NH 1 "Exercice n° 2 : Traçage"
+.PP
+Trivial quand même, à toi de dessiner.
+.NH 1 "Exercice n°3 : Faut monter les étages à pieds"
+.PP
+En utilisant le même AOP qu'à l'exercice n°1 ($A sub 0 = 10 sup 5$, $f sub 0 = 10 roman " Hz"$), on souhaite réaliser un montage
+respectant le cahier de charges suivant :
+.LP
+.Ls B
+.Li
+Gain en tension : +400 
+.Li
+Impédence d'entrée : $>= 100 K Omega$
+.Li
+Bande passante : $>= 20 K roman " Hz"$
+.Le

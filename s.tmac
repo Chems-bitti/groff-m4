@@ -19,7 +19,9 @@ for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ..
+.so /usr/share/groff/1.22.4/tmac/pdfmark.tmac
 .if !\n(.g .ab These ms macros require groff.
 .if \n(.C \
 .	ab The groff ms macros do not work in compatibility mode.
@@ -180,19 +182,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .di cov*tl-div
 .par@reset
 .ft B
-.ps +2
-.vs +3p
+.ps +9
+.vs +2p
 .ll (u;\\n[LL]*5/6)
 .nr cov*n-au 0
 .DEVTAG-TL
 ..
 .de @AU
-.par@reset
+.parreset
 .if !'\\n(.z'' \{\
 .	br
 .	di
 .\}
-.r cov*n-au +1
+.nr cov*n-au +1
 .di cov*au-div!\\n[cov*n-au]
 .nf
 .ft I
@@ -215,7 +217,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	ie (\\n[PS] >= 1000) \
 .		ps (\\n[PS]z / 1000u)
 .	el \
-.		ps \\n[PS]
+.		ps \\n[PS]+4
+.		vs \\n[VS]+4
 .\}
 ..
 .
@@ -1432,7 +1435,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .par@finish
 .sp 1
 .ft B
-.ps +2
+.ps +5
 .vs +3p
 .ce 9999
 .DEVTAG-TL
@@ -2091,7 +2094,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .rr l\\n(l0
 .rr i\\n(l0
 .rm l\\n(l0
-.nr l0 −1
+.nr l0 -1
 .RE
 .ie !\\n(l0 \{\
 .       ie "\\$1"0" .LP 0
@@ -2147,8 +2150,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'ti 5
 \\*(SN2 \" Output SN string
 ..
-.de tc
+.de tc 
 .pg@begin 1 i 
+.ie !"\\$1""\" \{\
+.br
+\&\c
+'bp
+.ta \\n(LLu-5n \\n(LLuR
+.ce 
+\f3TABLE DE MATIERES\fR
+.sp 2
+.nf
+.so \\$1
+.pg@begin 1 0
+.bp
+.\}
+.el \{\
 .br
 \&\c
 'bp
@@ -2158,12 +2175,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .sp 2
 .nf
 .so toc
-.pg@begin 3 0
+.pg@begin 1 0
 .bp
 .open file toc
 .close file
+.\}
 ..
 .de FT \"Figures and tables
+.nr savepage \\n[PN]
 .pg@begin 1 i 
 .if "\\$1"f" \{\
 .br
@@ -2188,14 +2207,90 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .nf
 .tL
 .rm tL
+.br
 .\}
+.pg@begin \\n[savepage]+2 0
+..
+.\" Chapter macro
+.de Se \" section; $1 = number; $2 = name;
+. \" $3 = type (Chapter, Appendix, etc)
+. \"
+. \" 1. Number Register Initialization
+. \"
+.ie !"\\$1"" \{. \" Test for sect number
+. nr sE \\$1 \" Assign to register sE
+. if !\\n(sE \{. \" Test if not a numeric
+. .af sE A \" Handle appendices
+. if "\\$1"A" .nr sE 1
+. if "\\$1"B" .nr sE 2
+. if "\\$1"C" .nr sE 3
+. if "\\$1"D" .nr sE 4
+. if "\\$1"E" .nr sE 5
+. if "\\$1"F" .nr sE 6
+. if "\\$1"G" .nr sE 7
+. if "\\$1"H" .nr sE 8
+. if "\\$1"I" .nr sE 9
+. if "\\$1"J" .nr sE 10\}\}
+. \" Only go as far as J
+.el \{\
+. nr sE 0
+. tm Preface or if Appendix past letter J:
+. tm Set number register sE to position
+. tm of that letter in the alphabet
+. tm and alter register format:
+. tm For Appendix K, enter:
+. tm .Se K "Title"
+. tm .nr sE 11
+. tm .af sE A
+.\}
+.if \\n%>1 .bp \" Check if consecutive sections
+. \" in same file and break page
+.ie !"\\$1"" \{. \" Test for sect number
+. \" to set page number type
+. ds NN \\\\n(sE-\\\\n(PN
+. ds H1 \\n(sE \" Set for subsection numbering
+. \}
+.el \{
+. ds NN \\\\n(PN
+. nr sE 0\}
+.nr fG 0 \" Initialize figure counter
+.nr tB 0 \" Initialize table counter
+.nr nh*hl 0 \" Reseting the Heading counter aswell
+. \" Last Part of Se Macr.\" Part 2 of Se Macro (Alternate):
+.fl
+.rs
+.sp .75i \" Move down from top
+. \" Section number in 24 pt. bold
+.sp 12p
+. \" Section title in 20 pt. bold
+.if !"\\$2"" \{\
+.ce 2
+\s15\f3\\$2\fP\s10
+.\}
+.sp 12p
+. \" Optional 2nd line of title
+.if !"\\$3"" \s15\f3\\$3\fP\s10
+.sp 3
+.ad b
+.ns
+. \" Now to toc
+.tC "\\$1" "\\$2 \\$3" "Chapter"
 ..
 .de tC
+.if "\\$3"Chapter" \{\
+.br
+.opena file toc
+.write file ".br
+.write file \\$1 \\$2\\a\\a\\a\ \ \ \ \ \ \ \ \\n[PN]
+.close file
+.\}
 .if "\\$3"Heading" \{\
 .br
 .opena file toc
 .write file ".br
-.write file \\$1 \\$2\\a\\t\\n[PN]
+.write file ".in +5n
+.write file \\$1 \\$2\\a\ \ \ \ \ \ \ \ \\n[PN]
+.write file ".in -5n
 .close file
 .\}
 .if "\\$3"Figure" \{\
@@ -2218,6 +2313,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
+.de Hl \" Horizontal line. $1 = underline char
+.br
+\l’\\n(.lu-\\n(.iu\&\\$1’
+.br
+..
 .\" ====================================================================
 .\" Editor settings
 .\" ====================================================================
