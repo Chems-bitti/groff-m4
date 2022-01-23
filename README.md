@@ -39,7 +39,7 @@ s.tmac :
 - ~~Make a figure index that is generated after the table index~~
 - ~~Have it so that I can choose which page to print which thing (toc on second page for example)~~
 - *Good* pdf links
-- make .tc macro more extensible
+- ~~make .tc macro more extensible~~
 - make .FT macro more extensible
 
 .m4 :
