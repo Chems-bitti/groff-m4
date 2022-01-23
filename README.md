@@ -9,8 +9,9 @@ This repo also includes a modified ms macro package `s.tmac` that adds a few thi
 - Figure and table index `.FT f` or `.FT t`, see school/TD1.m4 for comments
 - Betters Lists `.Ls, .Li, and .Le`
 - Code blocks in courier `.Ps and .Pe`
+- `.Se`ction macro 
 
-These things are heavily inspired (some modified, some not) from the extended macro package by Steve Talbott. Found this O'Reilly book :
+These things are heavily inspired (some modified, some not) from the extended macro package by Steve Talbott. Found on this O'Reilly book :
 https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter17.html
 The book is great, would recommend for people who want to get into text processing and roff in general.
 
@@ -22,7 +23,9 @@ If you would like to use my modified ms macros, change your /usr/share/groff/1.2
 2. Put gpic.m4 in any directory (can be same as libgen.m4 and libcct)
 3. Change the `-I` argument inside chroff to the directory containing libcct.m4 and libgen.m4
 4. Change gpic.m4 argument in chroff accordingly
-and with that the setup is done. To test it:
+and with that the setup is done.
+
+To test it:
 1. Copy example from documentation or write your own in a `.m4` file
 2. make sure to include eqn $$ delimiters in that .m4 file (check my out.m4)
 3. Run `sudo chmod +x chroff`
