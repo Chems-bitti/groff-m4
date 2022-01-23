@@ -1,4 +1,4 @@
-.\" TD.pdf
+.\" TD1.pdf
 .EQ
 delim $$
 .EN
