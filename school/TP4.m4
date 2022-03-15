@@ -38,7 +38,7 @@ On réalise le montage suivant :
 .PS
 cct_init
 ground
-source(up_,AC); llabel(+,V sub s, -); line right 0.1
+source(up_,AC); llabel(-,V sub s, +); line right 0.1
 resistor(right_); llabel(,R sub s,); rlabel(,10~k Omega)
 QN : e_fet(up_,,N,S); rlabel(,Q sub N,)
 line down QN.S.y from QN.S; ground
@@ -55,7 +55,7 @@ line left then right 1; move up 0.1; "$+E$"
 .Fs
 .PS
 ground
-source(up_,AC); llabel(+,V sub s, -); line right 0.1
+source(up_,AC); llabel(-,V sub s, +); line right 0.1
 resistor(right_); llabel(,R sub s,); rlabel(,10~k Omega)
 line right 0.2; move up 0.1; "$G$"
 move down 0.6; line right 0.3;
@@ -142,7 +142,7 @@ On rajoute au montage précédent une capacité $C$ et une résistance $R sub L$
 .PS
 cct_init
 ground
-source(up_,AC); llabel(+,V sub s, -); line right 0.1
+source(up_,AC); llabel(-,V sub s, +); line right 0.1
 resistor(right_); llabel(,R sub s,); rlabel(,10~k Omega)
 QN : e_fet(up_,,N,S); rlabel(,Q sub N,)
 line down QN.S.y from QN.S; ground
@@ -212,7 +212,7 @@ Z sub out = 2250 Omega approx R sub D
 .PS
 cct_init
 ground
-source(up_,AC); llabel(+,V sub s, -); line right 0.1
+source(up_,AC); llabel(-,V sub s, +); line right 0.1
 resistor(right_); llabel(,R sub s,); rlabel(,10~k Omega)
 QN : e_fet(up_,,N,S); rlabel(,Q sub N,)
 line down QN.S.y from QN.S; ground
@@ -230,7 +230,7 @@ line left from QP.G; dot; rlabel(,V sub BIAS)
 .Fs
 .PS
 ground
-source(up_,AC); llabel(+,V sub s, -); line right 0.1
+source(up_,AC); llabel(-,V sub s, +); line right 0.1
 resistor(right_); llabel(,R sub G,); rlabel(,10~k Omega)
 line right 0.2; move up 0.1; "$G$"
 move down 0.6; line right 0.3;

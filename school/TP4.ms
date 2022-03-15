@@ -92,9 +92,9 @@ line invis  up
   line from Here+(((0.25*linewid))*(cos(rp_ang)),((0.25*linewid))*(sin(rp_ang))) \
           to Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang)))}
   { [box invis wid (0.25*linewid)*2 ht (0.25*linewid)*2] at Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang))) } 
-  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ +$$~~$" \
+  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ -$$~~$" \
      at last [].s rjust below }; {"$~~$$ V sub s$$~~$" \
-     at last [].w rjust }; {"$~~$$ -$$~~$" \
+     at last [].w rjust }; {"$~~$$ +$$~~$" \
      at last [].n rjust above }; ; line right 0.1
    line invis  right
   rpoint__
@@ -249,9 +249,9 @@ line invis  up
   line from Here+(((0.25*linewid))*(cos(rp_ang)),((0.25*linewid))*(sin(rp_ang))) \
           to Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang)))}
   { [box invis wid (0.25*linewid)*2 ht (0.25*linewid)*2] at Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang))) } 
-  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ +$$~~$" \
+  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ -$$~~$" \
      at last [].s rjust below }; {"$~~$$ V sub s$$~~$" \
-     at last [].w rjust }; {"$~~$$ -$$~~$" \
+     at last [].w rjust }; {"$~~$$ +$$~~$" \
      at last [].n rjust above }; ; line right 0.1
    line invis  right
   rpoint__
@@ -520,9 +520,9 @@ line invis  up
   line from Here+(((0.25*linewid))*(cos(rp_ang)),((0.25*linewid))*(sin(rp_ang))) \
           to Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang)))}
   { [box invis wid (0.25*linewid)*2 ht (0.25*linewid)*2] at Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang))) } 
-  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ +$$~~$" \
+  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ -$$~~$" \
      at last [].s rjust below }; {"$~~$$ V sub s$$~~$" \
-     at last [].w rjust }; {"$~~$$ -$$~~$" \
+     at last [].w rjust }; {"$~~$$ +$$~~$" \
      at last [].n rjust above }; ; line right 0.1
    line invis  right
   rpoint__
@@ -921,9 +921,9 @@ line invis  up
   line from Here+(((0.25*linewid))*(cos(rp_ang)),((0.25*linewid))*(sin(rp_ang))) \
           to Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang)))}
   { [box invis wid (0.25*linewid)*2 ht (0.25*linewid)*2] at Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang))) } 
-  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ +$$~~$" \
+  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ -$$~~$" \
      at last [].s rjust below }; {"$~~$$ V sub s$$~~$" \
-     at last [].w rjust }; {"$~~$$ -$$~~$" \
+     at last [].w rjust }; {"$~~$$ +$$~~$" \
      at last [].n rjust above }; ; line right 0.1
    line invis  right
   rpoint__
@@ -1098,9 +1098,9 @@ line invis  up
   line from Here+(((0.25*linewid))*(cos(rp_ang)),((0.25*linewid))*(sin(rp_ang))) \
           to Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang)))}
   { [box invis wid (0.25*linewid)*2 ht (0.25*linewid)*2] at Here+((rp_len/2)*(cos(rp_ang)),(rp_len/2)*(sin(rp_ang))) } 
-  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ +$$~~$" \
+  line to Here+((rp_len)*(cos(rp_ang)),(rp_len)*(sin(rp_ang))) invis ;  {"$~~$$ -$$~~$" \
      at last [].s rjust below }; {"$~~$$ V sub s$$~~$" \
-     at last [].w rjust }; {"$~~$$ -$$~~$" \
+     at last [].w rjust }; {"$~~$$ +$$~~$" \
      at last [].n rjust above }; ; line right 0.1
    line invis  right
   rpoint__
