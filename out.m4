@@ -1,3 +1,4 @@
+./" out.pdf
 .EQ
 delim $$
 .EN
@@ -30,6 +31,9 @@ line left 0.2 from S.In2 then down 0.2
 ground
 .PE
 .Fe "Inverting amplifier"
+.[ "This is a link to a site" ]( https://youtu.be/dQw4w9WgXcQ )
+.LP
+.[ "And this is a link to my email" ]< shemseddinenaimi@gmail.com >
 .NH 2 "Another One"
 .Fs
 .PS

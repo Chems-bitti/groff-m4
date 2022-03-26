@@ -1,3 +1,4 @@
+./" out.pdf
 .EQ
 delim $$
 .EN
@@ -151,6 +152,9 @@ box invis ht 0 wid 0 with .c at Here
   } 
 .PE
 .Fe "Inverting amplifier"
+.[ "This is a link to a site" ]( https://youtu.be/dQw4w9WgXcQ )
+.LP
+.[ "And this is a link to my email" ]< shemseddinenaimi@gmail.com >
 .NH 2 "Another One"
 .Fs
 .PS

@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ..
-.so /usr/share/groff/1.22.4/tmac/pdfmark.tmac
+.nr fc 1
 .if !\n(.g .ab These ms macros require groff.
 .if \n(.C \
 .	ab The groff ms macros do not work in compatibility mode.
@@ -182,17 +182,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .di cov*tl-div
 .par@reset
 .ft B
-.ps +9
+.ps +5
 .vs +2p
 .ll (u;\\n[LL]*5/6)
 .nr cov*n-au 0
 .DEVTAG-TL
 ..
 .de @AU
-.parreset
+.par@reset
 .if !'\\n(.z'' \{\
 .	br
-.	di
+	di
 .\}
 .nr cov*n-au +1
 .di cov*au-div!\\n[cov*n-au]
@@ -217,8 +217,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	ie (\\n[PS] >= 1000) \
 .		ps (\\n[PS]z / 1000u)
 .	el \
-.		ps \\n[PS]+4
-.		vs \\n[VS]+4
+.		ps \\n[PS]
+.		vs \\n[VS]
 .\}
 ..
 .
@@ -656,8 +656,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .de @FS
 .ie \\n[.$] .fn*do-FS "\\$1" no
 .el \{\
+\\v'-.3m'\\s'\\En(.s*80/100'\\n(fc\\s0\\v'.3m'  
 .	ie \\n[fn*text-num]>\\n[fn*note-num] .fn*do-FS \\n+[fn*note-num]
 .	el .fn*do-FS
+\\v'-.3m'\\s'\\En(.s*80/100'\\n(fc\\s0\\v'.3m'\ \  
+.	nr fc \\n(fc+1
 .\}
 ..
 .\" Second argument of 'no' means don't embellish the first argument.
@@ -2151,21 +2154,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \\*(SN2 \" Output SN string
 ..
 .de tc 
+.\"ie !"\\$1""\" \{
+.\"br
+.\"\&\c
+.\"'bp
+.\"ta \\n(LLu-5n \\n(LLuR
+.\"ce 
+.\"\f3TABLE DE MATIERES\fR
+.\"sp 2
+.\"nf
+.\"so \\$1
+.\"pg@begin 1 0
+.\"bp
+.\"\}
+.\"el \{\
 .pg@begin 1 i 
-.ie !"\\$1""\" \{\
-.br
-\&\c
-'bp
-.ta \\n(LLu-5n \\n(LLuR
-.ce 
-\f3TABLE DE MATIERES\fR
-.sp 2
-.nf
-.so \\$1
-.pg@begin 1 0
-.bp
-.\}
-.el \{\
 .br
 \&\c
 'bp
@@ -2179,7 +2182,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .bp
 .open file toc
 .close file
-.\}
+.\"}
 ..
 .de FT \"Figures and tables
 .nr savepage \\n[PN]
@@ -2309,8 +2312,111 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .da
 .\}
 ..
-
-
+.\"==============================[ HYPERLINKS ]============================={{{1
+.
+.\" Strings inserted before and after links rendered by non-interactive mediums
+.if n .ds [_ \fI
+.if n .ds _] \fP
+.
+.\" .[ -- Format-agnostic hyperlinks.
+.\"
+.\" Usage:
+.\"     .[ [TEXT]   "]("  [URL]    ")" [AFFIX]
+.\"     .[ [TEXT]   "]<"  [EMAIL]  ">" [AFFIX]
+.\"     .[ [TEXT]   "]["  [ANCHOR] "]" [AFFIX]
+.\"     .[ [URL]    "]()"              [AFFIX]
+.\"     .[ [EMAIL]  "]<>"              [AFFIX]
+.\"     .[ [ANCHOR] "][]"              [AFFIX]
+.\"     .[ [ANCHOR] "]"                [AFFIX]
+.\"
+.\" Examples:
+.\"     .[ eBay ]( https://ebay.com )
+.\"     .[ Contact ]< contact@author.com >
+.\"     .[ Term ][ term-id ] \" See .#
+.\"
+.\"   Trailing punctuation using the affix parameter:
+.\"     .[ Details ]( " (visit " http://url " for more information)" ) ,
+.\"     .[ Term-ID ][ " (q.v. " term-id ", section 3.2)" ] ,
+.\"     .[ "Send an e-mail" ]< " to " email@address.com "" > .
+.\"
+.\"   Shorthand forms:
+.\"     .[ https://ebay.com ]()   \" Same as .[ https://ebay.com ]( https://ebay.com )
+.\"     .[ foo@bar.com ]<>        \" Same as .[ foo@bar.com ]< foo@bar.com >
+.\"     .[ Term ][]               \" Same as .[ Term ][ Term ]
+.\"     .[ Term ]                 \" As above
+.\"
+.\" Uses:
+.\"     \*([_
+.\"     \*(_]
+.\"
+.\" TODO:
+.\"     * Support Heirloom Doctools' dpost(1) and dhtml(1)
+.\"     * Support Neatroff's neatpdf(1)
+.
+.\" Printed/non-interactive
+.de [
+.	if ']('\\$2' \{\
+.		if !'\\$3'\\$1'         .if !'\\$3'\\$1/' \
+.		if !'\\$3'http://\\$1'  .if !'\\$3'http://\\$1/' \
+.		if !'\\$3'https://\\$1' .if !'\\$3'https://\\$1/' \
+.		if !'\\$3'mailto:\\$1' \{\
+.			ie ')'\\$6' \&\\$1\\$3\\$4\\$5\\$7
+.			el \&\\$1 (\\*([_\\$3\\*(_])\\$5
+.			ig >>
+.		\}
+\&\\*([_\\$1\\*(_]\\$5
+.		ig >>
+.		>>
+.	\}
+.	if ']['\\$2' \{\
+.		ie ']'\\$6' \&\\$1\\$3\\$4\\$5\\$7
+.		el \&\\$1\\$5
+.	\}
+.	if ']<'\\$2' \{\
+.		ie '\\$1'\\$3'  \&\\*([_\\$1\\*(_]\\$5
+.		el .ie '>'\\$6' \&\\$1\\$3\\$4\\$5\\$7
+.		el              \&\\$1 <\\*([_\\$3\\*(_]>\\$5
+.	\}
+.	if '\\$2']<>' \&\\*([_\\$1\\*(_]\\$3
+.	if '\\$2']()' \&\\*([_\\$1\\*(_]\\$3
+.	if '\\$2'][]' \&\\$1\\$3
+.	if '\\$2']'   \&\\$1\\$3
+..
+.
+.\" HTML: Groff
+.nop .if r ps4html .rm [ \" HACK: Fix pre-grohtml(1)
+.if '\*(.T'html' \{ .de [
+.	if ']('\\$2' \{\
+.		ie ')'\\$6' \X'html:<a href="\\$4">'\\$1\X'html:</a>'\\$7
+.		el          \X'html:<a href="\\$3">'\\$1\X'html:</a>'\\$5 \}
+.	if ']['\\$2' \{\
+.		ie ']'\\$6' \X'html:<a href="#\\$4">'\\$1\X'html:</a>'\\$7
+.		el          \X'html:<a href="#\\$3">'\\$1\X'html:</a>'\\$5 \}
+.	if ']<'\\$2' \{\
+.		ie '>'\\$6' \X'html:<a href="mailto:\\$4">'\\$1\X'html:</a>'\\$7
+.		el          \X'html:<a href="mailto:\\$3">'\\$1\X'html:</a>'\\$5 \}
+.	if '\\$2']<>' \X'html:<a href="mailto:\\$1">'\\$1\X'html:</a>'\\$3
+.	if '\\$2']()' \X'html:<a href="\\$1">'\\$1\X'html:</a>'\\$3
+.	if '\\$2'][]' \X'html:<a href="#\\$1">'\\$1\X'html:</a>'\\$3
+.	if '\\$2']'   \X'html:<a href="#\\$1">'\\$1\X'html:</a>'\\$3
+.. \}
+.
+.\" PDF: Groff
+.if '\*(.T'pdf' \{ .de [
+.	if ']('\\$2' \{\
+.		ie ')'\\$6' .nop .pdfhref W -A \&\\$7 -D "\\$4" -- \\$1
+.		el          .nop .pdfhref W -A \&\\$5 -D "\\$3" -- \\$1 \}
+.	if ']['\\$2' \{\
+.		ie ']'\\$6' .nop .pdfhref L -A \&\\$7 -D "\\$4" -- \\$1
+.		el          .nop .pdfhref L -A \&\\$5 -D "\\$3" -- \\$1 \}
+.	if ']<'\\$2' \{\
+.		ie '>'\\$6' .nop .pdfhref W -A \&\\$7 -D "mailto:\\$4" -- \\$1
+.		el          .nop .pdfhref W -A \&\\$5 -D "mailto:\\$3" -- \\$1 \}
+.	if '\\$2']<>' .nop .pdfhref L -A \&\\$3 -D "mailto:\\$1" -- \\$1
+.	if '\\$2']()' .nop .pdfhref W -A \&\\$3 -D "\\$1" -- \\$1
+.	if '\\$2'][]' .nop .pdfhref L -A \&\\$3 -D "\\$1" -- \\$1
+.	if '\\$2']'   .nop .pdfhref L -A \&\\$3 -D "\\$1" -- \\$1 \}
+.. \}
 
 
 .de Hl \" Horizontal line. $1 = underline char
@@ -2318,6 +2424,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \l’\\n(.lu-\\n(.iu\&\\$1’
 .br
 ..
+.if '\*(.T'dvi' \{ .de [
+.	if ']('\\$2' \{\
+.		ie ')'\\$6' \X'html:<a href="\\$4">'\\$1\X'html:</a>'\\$7
+.		el          \X'html:<a href="\\$3">'\\$1\X'html:</a>'\\$5 \}
+.	if ']['\\$2' \{\
+.		ie ']'\\$6' \X'html:<a href="#\\$4">'\\$1\X'html:</a>'\\$7
+.		el          \X'html:<a href="#\\$3">'\\$1\X'html:</a>'\\$5 \}
+.	if ']<'\\$2' \{\
+.		ie '>'\\$6' \X'html:<a href="mailto:\\$4">'\\$1\X'html:</a>'\\$7
+.		el          \X'html:<a href="mailto:\\$3">'\\$1\X'html:</a>'\\$5 \}
+.	if '\\$2']<>' \X'html:<a href="mailto:\\$1">'\\$1\X'html:</a>'\\$3
+.	if '\\$2']()' \X'html:<a href="\\$1">'\\$1\X'html:</a>'\\$3
+.	if '\\$2'][]' \X'html:<a href="#\\$1">'\\$1\X'html:</a>'\\$3
+.	if '\\$2']'   \X'html:<a href="#\\$1">'\\$1\X'html:</a>'\\$3
+.. \}
+
+
 .\" ====================================================================
 .\" Editor settings
 .\" ====================================================================
@@ -2328,3 +2451,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\" End:
 .\" vim: set filetype=groff textwidth=72:
 
+.
