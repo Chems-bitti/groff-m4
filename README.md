@@ -15,6 +15,8 @@ These things are heavily inspired (some modified, some not) from the extended ma
 https://www.oreilly.com/library/view/unix-text-processing/9780810462915/Chapter17.html
 The book is great, would recommend for people who want to get into text processing and roff in general.
 
+Additionally, I took the liberty of adding a modified version the "\[" macro for external links created by Alhadis and provided in his mono macro package, link: https://github.com/Alhadis/Mono
+
 ## M4 macro documentation
 The documentation can be found on https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.604.2295&rep=rep1&type=pdf. While this was intended for Latex, it works alright with groff, you only have to watch out for text formatting differences in labels.
 ## Instructions
